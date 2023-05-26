@@ -3,6 +3,10 @@ run-name: ${{ github.actor }} is checking Rspec in GitHub Actions 🚀
 on: [push]
 jobs:
   rspec:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['2.7', '3.0', '3.1', head, jruby, jruby-head, truffleruby, truffleruby-head]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -10,7 +14,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Run RSpec
         run: bundle exec rspec
