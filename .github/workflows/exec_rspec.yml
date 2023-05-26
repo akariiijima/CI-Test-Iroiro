@@ -10,7 +10,7 @@ jobs:
         gemfile: [rspec-3.10.0, rspec-3.11.0, rspec-3.12.0]
     runs-on: ubuntu-latest
     env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gem
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
